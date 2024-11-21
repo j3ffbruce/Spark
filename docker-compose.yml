@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  spark-master:
+    image: custom-spark-image
+    container_name: spark-master
+    environment:
+      - SPARK_MODE=master
+      - SPARK_MASTER_HOST=spark-master
+    ports:
+      - "7077:7077"  
+      - "9090:8080"  
+    volumes:
+      - ./jobs:/jobs
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+
+  spark-worker:
+    image: custom-spark-image
+    container_name: spark-worker
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+      - SPARK_WORKER_MEMORY=2g
+      - SPARK_WORKER_CORES=2
+    depends_on:
+      - spark-master
+    ports:
+      - "8081:8081"
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '2.0'
