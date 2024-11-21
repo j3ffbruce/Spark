@@ -1,0 +1,15 @@
+# Ignore all files
+*
+
+# Allow specific files
+!docker-compose.yml
+!Dockerfile
+!.gitignore
+!README.md
+
+!jobs/
+!jobs/project_spark_with_pytest/
+!jobs/project_spark_with_pytest/*
+!jobs/project_pyspark_pandas/
+!jobs/project_pyspark_pandas/*
+
