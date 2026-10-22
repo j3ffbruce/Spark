@@ -2,3 +2,4 @@
 .idea/
 datasets/
 packages/
+__pycache__/
